@@ -1,6 +1,7 @@
-#include<stdio.h> //This is a test edit
+#include<stdio.h>
 void insert(int val,int index,int *,int l);
 void search(int val,int *,int l);
+void delete(int val,int *,int l);
 int main()
 {
  int i,l,pos,value,element;
@@ -25,6 +26,7 @@ int main()
  printf("Select Your Choice \n");
  printf(" 1. Insert \n");
  printf(" 2. Search \n");
+ printf(" 3. Delete \n");
  scanf("%d",&choice);
  switch(choice)
  {
@@ -41,9 +43,9 @@ int main()
          search(element,a,l);
          break; 
   case 3:
-         printf("Enter The Element To Search ");
+         printf("Enter The Element delete ");
          scanf("%d",&element);
-         search(element,a,l);
+         delete(element,a,l);
          break; 
 
   default:printf("Enter A Valid Option");
@@ -84,3 +86,22 @@ void search(int val,int *p,int l)
 }
 
 
+void delete(int val,int *a,int l){
+int h;
+ printf("enter position to be deleted");
+ scanf("%d",&h);
+ if(h<0||h>l)
+{
+ printf("Invalid position");
+}
+ else
+{
+ for(int i=h-1; i<l-1; i++)
+{
+ a[i] = a[i + 1];
+}
+ printf("array elements\n");
+ for(int i=0;i<l-1;i++)
+ printf("%d\n",a[i]);
+}
+}
