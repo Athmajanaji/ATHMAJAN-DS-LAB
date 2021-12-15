@@ -8,7 +8,8 @@ struct node *insertatbeg(struct node*head,int data);
 struct node *insertatindex(struct node*head,int data,int pos);
 struct node *deleteatbeg(struct node *head);
 struct node *deleteatend(struct node *head);
-void deleteatpos(struct node *head,int pos);
+struct node *deleteAtIndex(struct node * head, int index);
+
  
 struct node
 {
@@ -65,7 +66,7 @@ int main()
          break;
   case 8:printf("Enter The POsition");
          scanf("%d",&pos);
-         deleteatpos(start,pos);
+         start=deleteAtIndex(start,pos);
          break;
   case 9:
          exit(0);
@@ -179,15 +180,24 @@ p->next=NULL;
 free(temp);
 return head;
 }
-void deleteatpos(struct node *head,int pos){
-	int val;
-	struct node *temp=head,*p;
-	for(int i=1;i<pos;i++){
-		p=temp;
-		temp=temp->next;
-	}
-	val=temp->data;
-	p->next=temp->next;
-	free(temp);
 
+struct node *deleteAtIndex(struct node * head, int index){
+    if(head->next==NULL){
+     printf("Nothing to delete");
+     }
+    else
+    {
+    struct node *p = head;
+    struct node *q = head->next;
+    for (int i = 1; i < index; i++)
+    {
+        p = p->next;
+        q = q->next;
+    }
+    
+    p->next = q->next;
+    free(q);
+    return head;
+    }
 }
+
